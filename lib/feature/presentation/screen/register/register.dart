@@ -1,16 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
+import '../../viewmodels/auth_view_model.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_title.dart';
 import '../../widget/text_field.dart';
 import '../main/main.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  late final TextEditingController email;
+  late final TextEditingController password;
+  @override
+  void initState() {
+    super.initState();
+    email = TextEditingController();
+    password = TextEditingController();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthViewModel>(context);
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -20,15 +37,28 @@ class RegisterScreen extends StatelessWidget {
             children: <Widget>[
               const CustomTitle(title: "Register"),
               SizedBox(height: 20.h),
-              const CustomTextFormField(),
+              CustomTextFormField(
+                controller: email,
+                hintText: "Write email",
+              ),
               SizedBox(height: 20.h),
-              const CustomTextFormField(),
+              CustomTextFormField(
+                controller: password,
+                hintText: "Write password",
+              ),
               SizedBox(height: 20.h),
-              const CustomTextFormField(),
+              const CustomTextFormField(
+                hintText: "Write re-password",
+              ),
               SizedBox(height: 40.h),
               CustomButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
+                onPressed: () async {
+                  final success = await authProvider.register(email.text, password.text);
+                  if (success) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
+                  } else {
+                    debugPrint("Error register");
+                  }
                 },
               )
             ],

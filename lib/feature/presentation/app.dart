@@ -9,14 +9,13 @@ class App extends StatelessWidget {
   const App({super.key});
 
   @override
-  @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(AppSize.width, AppSize.height),
       child: MaterialApp(
         theme: AppTheme.appTheme,
         debugShowCheckedModeBanner: false,
-        home: const LoginScreen(),
+        home:  LoginScreen(),
       ),
     );
   }

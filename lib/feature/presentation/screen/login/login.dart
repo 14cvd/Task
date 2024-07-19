@@ -1,17 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:provider/provider.dart';
+import '../../viewmodels/auth_view_model.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_title.dart';
 import '../../widget/text_field.dart';
 import '../main/main.dart';
 import '../register/register.dart';
-class LoginScreen extends StatelessWidget {
+
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  late final TextEditingController email;
+  late final TextEditingController password;
+  @override
+  void initState() {
+    super.initState();
+    email = TextEditingController();
+    password = TextEditingController();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthViewModel>(context);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,14 +43,20 @@ class LoginScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 40.0, left: 16, right: 16),
                       child: Column(
                         children: <Widget>[
-                          const CustomTextFormField(),
+                          CustomTextFormField(controller: email),
                           SizedBox(height: 12.h),
-                          const CustomTextFormField(),
+                          CustomTextFormField(controller: password),
                           SizedBox(height: 20.h),
                           CustomButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => const MainScreen()));
+                            onPressed: () async {
+                              final success = await authProvider.login(email.text, password.text);
+                              if (success) {
+                                // ignore: use_build_context_synchronously
+                                await Navigator.push(
+                                    context, MaterialPageRoute(builder: (context) => const MainScreen()));
+                              } else {
+                                debugPrint("erorr");
+                              }
                             },
                           )
                         ],
