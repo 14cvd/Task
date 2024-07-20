@@ -1,4 +1,4 @@
-# Task
+![simulator_screenshot_7D240FF2-D119-4825-AD3D-03FA4459D6C9](https://github.com/user-attachments/assets/7718ae87-4e8e-4899-9c15-849ed4f95de7)# Task
 
 ## Proje Açıklaması
 Task, teknik olarak kendini geliştirmek amacıyla hazırlanan bir projedir. Kullanıcılar, teknik görevleri takip edebilir ve yönetebilir. Uygulama, Firebase kullanarak kullanıcı kimlik doğrulama işlemlerini gerçekleştirir ve kullanıcı durumunu saklar, böylece uygulama yeniden başlatıldığında ana ekran açılır. Ayrıca, yerel bir JSON dosyasından veri çekerek kullanıcı arayüzünde gösterir ve bu verileri düzenleyerek Hive ile önbelleğe alır.
@@ -40,7 +40,8 @@ Task, teknik olarak kendini geliştirmek amacıyla hazırlanan bir projedir. Kul
 ## Ekran Görüntüleri
 | Ana Sayfa | Görev Ekleme | Görev Detayları |
 | --- | --- | --- |
-| ![Ana Sayfa](images/home.png) | ![Görev Ekleme](images/add_task.png) | ![Görev Detayları](images/task_details.png) |
+| ![Ana Sayfa]![simulator_screenshot_8A589A48-F596-4536-B53A-6CF0118958C8](https://github.com/user-attachments/assets/ed3a8ea5-c28d-44b4-9dc5-35b4f4053288)
+ | ![Görev Ekleme](images/add_task.png) | ![Görev Detayları](images/task_details.png) |
 
 ## Katkıda Bulunma
 Bu projeye katkıda bulunmak isterseniz, lütfen bir pull request açın veya bir issue oluşturun. Herhangi bir katkı memnuniyetle karşılanır.
