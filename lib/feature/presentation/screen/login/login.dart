@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import '../../viewmodels/auth_view_model.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_title.dart';
 import '../../widget/text_field.dart';
@@ -27,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthViewModel>(context);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,14 +53,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(height: 20.h),
                           CustomButton(
                             onPressed: () async {
-                              final success = await authProvider.login(email.text, password.text);
-                              if (success) {
-                                // ignore: use_build_context_synchronously
-                                await Navigator.push(
-                                    context, MaterialPageRoute(builder: (context) => const MainScreen()));
-                              } else {
-                                debugPrint("erorr");
-                              }
+                              // ignore: use_build_context_synchronously
+                              await Navigator.push(
+                                  context, MaterialPageRoute(builder: (context) => const MainScreen()));
                             },
                             child: const Text("Login"),
                           )

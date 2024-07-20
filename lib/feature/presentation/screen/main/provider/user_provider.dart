@@ -34,4 +34,11 @@ class UserProvider with ChangeNotifier {
     _users = users;
     notifyListeners();
   }
+
+  Future<void> editUser(int index, UserDto newUser) async {
+    final box = await Hive.openBox<UserDto>('users');
+    _users[index] = newUser;
+    await box.putAt(index, newUser);
+    notifyListeners();
+  }
 }
