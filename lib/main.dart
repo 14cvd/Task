@@ -19,7 +19,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(UserDtoAdapter());
   Hive.registerAdapter(AuthDtoAdapter());
-  await Hive.openBox<UserDto>('taskV1');
+  await Hive.openBox<UserDto>('users');
   await Hive.openBox<Auth>('authV1');
 
   SystemChrome.setPreferredOrientations([

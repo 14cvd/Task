@@ -43,9 +43,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.only(top: 40.0, left: 16, right: 16),
                       child: Column(
                         children: <Widget>[
-                          CustomTextFormField(controller: email),
+                          CustomTextFormField(
+                            controller: email,
+                            hintText: "Email",
+                          ),
                           SizedBox(height: 12.h),
-                          CustomTextFormField(controller: password),
+                          CustomTextFormField.password(
+                            controller: password,
+                            hintText: "Password",
+                          ),
                           SizedBox(height: 20.h),
                           CustomButton(
                             onPressed: () async {
@@ -58,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 debugPrint("erorr");
                               }
                             },
+                            child: const Text("Login"),
                           )
                         ],
                       ),

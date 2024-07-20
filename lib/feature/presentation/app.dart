@@ -15,7 +15,7 @@ class App extends StatelessWidget {
       child: MaterialApp(
         theme: AppTheme.appTheme,
         debugShowCheckedModeBanner: false,
-        home:  LoginScreen(),
+        home: const LoginScreen(),
       ),
     );
   }

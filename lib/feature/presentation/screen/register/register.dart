@@ -42,12 +42,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 hintText: "Write email",
               ),
               SizedBox(height: 20.h),
-              CustomTextFormField(
+              CustomTextFormField.password(
                 controller: password,
                 hintText: "Write password",
               ),
               SizedBox(height: 20.h),
-              const CustomTextFormField(
+              const CustomTextFormField.password(
                 hintText: "Write re-password",
               ),
               SizedBox(height: 40.h),
@@ -60,6 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     debugPrint("Error register");
                   }
                 },
+                child: const Text("Register"),
               )
             ],
           ),
