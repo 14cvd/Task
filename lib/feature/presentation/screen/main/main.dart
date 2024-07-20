@@ -18,8 +18,8 @@ class _MainScreenState extends State<MainScreen> {
     fetchUser();
   }
 
-  Future<void> fetchUser() async {
-    await Provider.of<UserProvider>(context, listen: false).fetchUsersFromLocalJson();
+  void fetchUser() async {
+    Provider.of<UserProvider>(context, listen: false);
   }
 
   @override
@@ -44,12 +44,14 @@ class _MainScreenState extends State<MainScreen> {
                           builder: (context) => EditedScreen(
                                 title: user.title,
                                 body: user.body,
+                                index: index,
+                                userProvider: userProvider,
                               )));
                 },
                 child: Card(
                   child: ListTile(
                     leading: CircleAvatar(
-                      child: Text(user.id.toString()),
+                      child: Text(index.toString()),
                     ),
                     title: Text(user.title ?? ''),
                     subtitle: Text(user.body ?? ''),

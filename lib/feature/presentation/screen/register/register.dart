@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
-import '../../viewmodels/auth_view_model.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_title.dart';
 import '../../widget/text_field.dart';
@@ -27,7 +25,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthViewModel>(context);
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -53,12 +50,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               SizedBox(height: 40.h),
               CustomButton(
                 onPressed: () async {
-                  final success = await authProvider.register(email.text, password.text);
-                  if (success) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
-                  } else {
-                    debugPrint("Error register");
-                  }
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MainScreen()));
                 },
                 child: const Text("Register"),
               )
