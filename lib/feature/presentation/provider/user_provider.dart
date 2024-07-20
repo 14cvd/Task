@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:task/feature/data/dto/users_dto.dart';
 
-import '../../../../data/source/local/local_storage.dart';
+import '../../data/source/local/local_storage.dart';
 
 class UserProvider with ChangeNotifier {
   List<UserDto> _users = [];

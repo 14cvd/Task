@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import '../../provider/auth_provider.dart';
 import '../../widget/custom_button.dart';
 import '../../widget/custom_title.dart';
 import '../../widget/text_field.dart';
@@ -53,9 +54,31 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(height: 20.h),
                           CustomButton(
                             onPressed: () async {
-                              // ignore: use_build_context_synchronously
-                              await Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => const MainScreen()));
+                              try {
+                                await Provider.of<AuthProvider>(context, listen: false)
+                                    .login(email.text, password.text);
+                                Navigator.pushReplacement(
+                                    // ignore: use_build_context_synchronously
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const MainScreen(),
+                                    ));
+                              } catch (e) {
+                                showDialog(
+                                  // ignore: use_build_context_synchronously
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Error'),
+                                    content: Text(e.toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.of(context).pop(),
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
                             },
                             child: const Text("Login"),
                           )
