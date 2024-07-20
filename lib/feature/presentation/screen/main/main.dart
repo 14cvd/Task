@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task/feature/presentation/screen/login/login.dart';
 
+import '../../provider/auth_provider.dart';
 import '../edited/edited.dart';
-import 'provider/user_provider.dart';
+import '../../provider/user_provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -25,11 +27,26 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () async {
+            await Provider.of<AuthProvider>(context, listen: false).logOut();
+            // ignore: use_build_context_synchronously
+            await Navigator.pushReplacement(
+                // ignore: use_build_context_synchronously
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginScreen(),
+                ));
+          },
+          icon: const Icon(Icons.exit_to_app_outlined),
+        ),
+      ),
       body: Consumer<UserProvider>(
         builder: (context, userProvider, child) {
           if (userProvider.users.isEmpty) {
             return const Center(
-              child: Text('No users available'),
+              child: CircularProgressIndicator(),
             );
           }
           return ListView.builder(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task/feature/presentation/screen/main/provider/user_provider.dart';
+import 'package:task/feature/presentation/provider/user_provider.dart';
 import 'package:task/feature/presentation/widget/custom_button.dart';
 import 'package:task/feature/presentation/widget/custom_title.dart';
 import 'package:task/feature/presentation/widget/text_field.dart';

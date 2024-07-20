@@ -1,35 +1,38 @@
-// data/repositories/user_repository_impl.dart
-import 'package:task/feature/data/dto/auth_dto.dart';
-import 'package:task/feature/domain/repository/auth_repository.dart';
-
-import '../source/local/auth_storage.dart';
-import '../source/local/local_storage.dart';
+// data/repositories/auth_repository_impl.dart
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../domain/repositories/auth_repository.dart';
+import '../models/user_model.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final HiveUserDataSource hiveDataSource;
-  final LocalStorageImpl jsonDataSource;
-
-  AuthRepositoryImpl({required this.hiveDataSource, required this.jsonDataSource});
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
-  Future<bool> login(String email, String password) async {
-    // Hive'dan kontrol et
-    bool hiveResult = await hiveDataSource.login(email, password);
-    if (hiveResult) return true;
-
-    // JSON'dan kontrol et
-    List<AuthDto> users = await jsonDataSource.loadAuth();
-    AuthDto? user = users.firstWhere(
-      (user) => user.email == email && user.password == password,
-    );
-
-    // ignore: unnecessary_null_comparison
-    return user != null;
+  Future<UserModel?> login(String email, String password) async {
+    try {
+      final result = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      return UserModel.fromFirebaseUser(result.user);
+    } catch (e) {
+      // Handle specific FirebaseAuthException if needed
+      rethrow;
+    }
   }
 
   @override
-  Future<bool> register(String email, String password) async {
-    // JSON dosyasında kayıt yapılmaz, sadece Hive'da kayıt yapılır.
-    return hiveDataSource.register(email, password);
+  Future<UserModel?> signUp(String email, String password, String rePassword) async {
+    try {
+      if (password != rePassword) {
+        throw Exception('Passwords do not match');
+      }
+      final result = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      return UserModel.fromFirebaseUser(result.user);
+    } catch (e) {
+      // Handle specific FirebaseAuthException if needed
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> logOut() async {
+    await _firebaseAuth.signOut();
   }
 }
