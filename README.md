@@ -61,7 +61,7 @@ To develop this application, you'll need to have Flutter installed on your machi
 ## Installation and Running the App
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/yourusername/task.git
+    git clone https://github.com/14cvd/Task.git
     cd task
     ```
 
@@ -82,14 +82,10 @@ To develop this application, you'll need to have Flutter installed on your machi
 ## Contributing
 Contributions are welcome! If you have any ideas, suggestions, or issues, please open a pull request or an issue on GitHub. Your feedback and contributions are greatly appreciated.
 
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for more information.
-
 ## Contact
 For any questions or suggestions, please contact me at:
-- **Email**: [your.email@example.com](mailto:your.email@example.com)
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/yourprofile)
-- **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
+- **LinkedIn**: [Cavid Abbasaliyev]([https://www.linkedin.com/in/yourprofile](https://www.linkedin.com/in/abbas3liyev/))
+- **GitHub**: [Cavid Abbasaliyev](https://github.com/14cvd)
 
 ---
 
