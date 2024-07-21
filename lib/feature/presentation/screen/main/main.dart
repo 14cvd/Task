@@ -20,8 +20,12 @@ class _MainScreenState extends State<MainScreen> {
     fetchUser();
   }
 
-  void fetchUser() async {
-    Provider.of<UserProvider>(context, listen: false);
+  Future<void> fetchUser() async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    await userProvider.initHive();
+    if (userProvider.users.isEmpty) {
+      await userProvider.fetchUsersFromLocalJson();
+    }
   }
 
   @override
