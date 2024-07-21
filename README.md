@@ -84,7 +84,7 @@ Contributions are welcome! If you have any ideas, suggestions, or issues, please
 
 ## Contact
 For any questions or suggestions, please contact me at:
-- **LinkedIn**: [Cavid Abbasaliyev]((https://www.linkedin.com/in/abbas3liyev/))
+- **LinkedIn**: [Cavid Abbasaliyev](https://www.linkedin.com/in/abbas3liyev/)
 - **GitHub**: [Cavid Abbasaliyev](https://github.com/14cvd)
 
 ---
